@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package com.teamrocket;
+
+option java_multiple_files = true;
+
+import "google/protobuf/wrappers.proto";
+
+service BookPurchaseService {
+  rpc purchaseBook(BookToBuy) returns (BoughtBookReply);
+  rpc studentHasFunds(StudentInfo) returns (google.protobuf.BoolValue);
+}
+
+message StudentInfo {
+  int64 studentId = 1;
+  double price = 2;
+}
+
+message BookToBuy {
+  int64 bookId = 1;
+  double price = 2;
+  int64 studentId = 3;
+}
+
+message BoughtBookReply {
+  int64 boughtBookId = 1;
+  repeated Recommendation recommendations = 2;
+}
+
+message Recommendation {
+  int64 id = 1;
+}
+
+message BoughtBook {
+  int64 id = 1;
+}

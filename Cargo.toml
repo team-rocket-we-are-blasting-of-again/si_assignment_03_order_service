@@ -11,3 +11,8 @@ rocket = "0.4.11"
 tokio = { version = "1", features = ["full"] }
 serde = { version = "1.0.147", features = ["derive"]}
 rocket_contrib = "0.4.11"
+tonic = "0.8.2"
+prost = "0.11.0"
+
+[build-dependencies]
+tonic-build = "0.8.2"

@@ -5,6 +5,10 @@ mod rest;
 mod http;
 mod order_service;
 mod types;
+mod grpc;
+pub mod students {
+    tonic::include_proto!("com.teamrocket");
+}
 
 #[tokio::main]
 async fn main() {
