@@ -8,15 +8,19 @@ mod http;
 mod order_service;
 mod types;
 mod grpc;
+mod book_service;
 pub mod students {
     tonic::include_proto!("com.teamrocket");
 }
 
-#[tokio::main]
-async fn main() {
+#[rocket::main]
+async fn main() -> Result<(), rocket::Error> {
     dotenv().ok();
 
-    rocket::ignite().mount("/", routes![
+    let _rocket = rocket::build().mount("/", routes![
         rest::order_book,
-    ]).launch();
+    ]).launch()
+    .await?;
+
+    Ok(())
 }
