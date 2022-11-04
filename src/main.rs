@@ -17,7 +17,7 @@ pub mod students {
 async fn main() -> Result<(), rocket::Error> {
     dotenv().ok();
 
-    let _rocket = rocket::build().mount("/", routes![
+    let _rocket = rocket::build().mount("/orders", routes![
         rest::order_book,
     ]).launch()
     .await?;

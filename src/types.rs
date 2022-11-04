@@ -3,11 +3,11 @@ use serde::Deserialize;
 #[derive(Deserialize)]
 pub struct Title {
     pub id: i32,
-    title: String,
-    authorFirstName: String,
-    authorLastName: String,
-    edition: i32,
-    year: i32,
+    pub title: String,
+    pub authorFirstName: String,
+    pub authorLastName: String,
+    pub edition: i32,
+    pub year: i32,
     pub price: f64,
     pub onStock: i32  
 }
