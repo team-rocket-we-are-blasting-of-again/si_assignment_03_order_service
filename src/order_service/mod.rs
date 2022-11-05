@@ -1,8 +1,14 @@
 pub mod order_service {
+    use crate::{
+        grpc::{order, student_has_funds},
+        students::BoughtBookReply,
+        types::Title,
+    };
 
-    use crate::{ types::Title, grpc::{student_has_funds, order}, students::BoughtBookReply };
-
-    pub async fn can_order_book(book: &Title, student_id: i32) -> Result<bool, Box<dyn std::error::Error>> {
+    pub async fn can_order_book(
+        book: &Title,
+        student_id: i32,
+    ) -> Result<bool, Box<dyn std::error::Error>> {
         let student_response = student_has_funds(book.price, student_id).await;
 
         match student_response {
@@ -11,7 +17,10 @@ pub mod order_service {
         }
     }
 
-    pub async fn make_order(book: &Title, student_id: i32) -> Result<BoughtBookReply, Box<dyn std::error::Error>> {
+    pub async fn make_order(
+        book: &Title,
+        student_id: i32,
+    ) -> Result<BoughtBookReply, Box<dyn std::error::Error>> {
         order(book.id, student_id, book.price).await
     }
 }
