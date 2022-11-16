@@ -19,12 +19,6 @@ jobs:
           cargo install cargo-binutils
           rustup component add llvm-tools-preview
 
-      - name: Build coverage report
-        shell: bash
-        run: |
-          RUSTFLAGS="-C instrument-coverage" cargo test --tests
-          rust-profdata merge -sparse default_*.profraw -o json5format.profdata
-
       - name: Echo coverage report
         id: coverage
         shell: bash
