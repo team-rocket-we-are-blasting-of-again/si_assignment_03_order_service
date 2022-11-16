@@ -29,7 +29,7 @@ jobs:
         id: coverage
         shell: bash
         run: |
-          llvm-cov report \
+          rust-cov report \
             $( \
               for file in \
                 $( \
