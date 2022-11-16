@@ -23,10 +23,10 @@ jobs:
       - name: Setup variables
         run: |
           version=$(cat Cargo.toml | grep version | head -n 1 | tr 'version = "' " " | xargs | awk '{print tolower($0)}')
-          lower_case_image=$(echo $IMAGE_NAME | awk '{print tolower($0)}' | tr / -)
+          lower_case_image=$(echo $IMAGE_NAME | awk '{print tolower($0)}')
           echo "project_version=$version" >> $GITHUB_ENV
           echo "lower_case_image=$lower_case_image" >> $GITHUB_ENV
-          echo "branch_name=$(echo $GITHUB_REF | cut -d'/' -f 3)" >> $GITHUB_ENV
+          echo "branch_name=$(echo $GITHUB_REF | cut -d'/' -f 3 | tr / -)" >> $GITHUB_ENV
         env:
           IMAGE_NAME: ${{ env.DOCKER_USERNAME }}/${{ github.event.repository.name }}
 
