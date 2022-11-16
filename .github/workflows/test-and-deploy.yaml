@@ -39,3 +39,14 @@ jobs:
           docker push "$image"
         env:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Push README to Dockerhub
+        uses: christian-korneck/update-container-description-action@v1
+        env:
+          DOCKER_USER: ${{ env.DOCKER_USERNAME }}
+          DOCKER_PASS: ${{ secrets.DOCKER_PASSWORD }}
+        with:
+          destination_container_repo: ${{ env.lower_case_image }}
+          provider: dockerhub
+          short_description: "Awesome Microservice"
+          readme_file: "README.md"
