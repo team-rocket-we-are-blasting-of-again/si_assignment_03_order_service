@@ -29,7 +29,7 @@ jobs:
         id: coverage
         shell: bash
         run: |
-          rust-cov report \
+          report=$(rust-cov report \
             $( \
               for file in \
                 $( \
@@ -42,12 +42,15 @@ jobs:
                 printf "%s %s " -object $file; \
               done \
             ) \
-          --instr-profile=json5format.profdata --summary-only
+          --instr-profile=json5format.profdata --summary-only)
+          echo "report<<EOF" >> $GITHUB_OUTPUT
+          echo "$report" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Send reports to PR comment
         uses: actions/github-script@v6
         env:
-          COVERAGE: "coverage\n${{ steps.coverage.outputs.stdout }}"
+          COVERAGE: "coverage\n${{ steps.coverage.outputs.report }}"
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
