@@ -4,6 +4,7 @@ on: [push, pull_request]
 
 env:
   DOCKER_USERNAME: tobiaszimmer
+  ROCKET_ADDRESS: 0.0.0.0 # This may be needed if integration tests hit the api
 
 jobs:
   test-and-deploy:

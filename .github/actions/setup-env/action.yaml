@@ -15,3 +15,9 @@ runs:
       uses: actions-rs/toolchain@v1
       with:
         toolchain: nightly
+
+    - name: gRPC dependencies
+      shell: bash
+      run: |
+        sudo apt update
+        sudo apt install protobuf-compiler libprotobuf-dev -y
