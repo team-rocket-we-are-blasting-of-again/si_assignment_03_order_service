@@ -16,6 +16,10 @@ runs:
       with:
         toolchain: nightly
 
+    - name: Use nightly
+      shell: bash
+      run: rustup default nightly
+
     - name: gRPC dependencies
       shell: bash
       run: |
