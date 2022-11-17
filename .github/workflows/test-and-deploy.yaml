@@ -49,4 +49,4 @@ jobs:
           destination_container_repo: ${{ env.lower_case_image }}
           provider: dockerhub
           short_description: "Awesome Microservice"
-          readme_file: "README.md"
+          readme_file: "DOCKER_README.md"
